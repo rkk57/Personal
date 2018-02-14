@@ -63,9 +63,8 @@ There are several different ways to emphasize text: *italics*, **bold**, ***comb
 
 *moth*
 **warmth**
-***green***
+***blush***
 ~~lilac~~
-
 
 ## Lists
 Lists are very easy to do. For a bulleted list, use the asterisk and for a numbered list, use the number followed by a period. Hitting `Enter` after a bullet or number continues the list automatically. Hitting `Enter` followed by `Tab` gets you a sub item for a bulleted list. For example:
