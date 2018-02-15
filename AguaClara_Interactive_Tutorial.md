@@ -115,9 +115,11 @@ Image with Height and Width Adjusted:
 1. Make an images folder in your personal repository, and import an image of your hometown or pet from that folder. Do it unformatted using the image URL and the relative file path method, then do it again but instead change the height and width of your image:
 
 <!--- Fill you answer here. --->
+![taughannock falls](https://github.com/rkk57/Personal/blob/master/images/ithaca-ny-united-states.jpg?raw=true)
 
+![taughannock falls](/images/ithaca-ny-united-states.jpg)
 
-
+<img src="https://github.com/rkk57/Personal/blob/master/images/ithaca-ny-united-states.jpg?raw=true" height=150 width=200>
 
 
 ## Links
@@ -128,6 +130,9 @@ To insert a link, all you have to do is enclose your linked text in `[]` followe
 1. Below, write a sentence describing your major, and insert a link to your major's department website.
 
 <!--- Fill you answer here. --->
+My major is environmental engineering, which focuses on contaminants and issues of water quality, more info here:
+[EnvE department website](https://bee.cals.cornell.edu/undergraduate/environmental-engineering-program)
+
 
 ## Tables
 Tables in Markdown are slightly harder, but there's an automatic function that allows to you make one easily. When working in a `.md` file, all you have to do is type `table` and hit enter. It will initialize a 2 by 2 table, but you can easily increase the width by going to the last column and hitting `Tab` or it's height by clicking in any cell and hitting `Enter`. Notice in the example how the text below the header is justified left, center, and right. This is due to the line below the header. A line with a colon on the far left of the dashes only indicates left justified, colons on both sides of the dashes indicates centered, and a colon on the far right of the dashes indicates right justified.
@@ -159,6 +164,12 @@ When making tables, it's not important that the lines match up. For example, the
 
 <!--- Fill you answer here. --->
 
+| fav foods      | fav books                     | fav places on campus | fav animals |
+|:-------------- |:-----------------------------: | --------------------:| :-----------:|
+| peaches        | The Pleasure of My Company    | 2nd floor of mann    | turtles     |
+| watermelon     | the amazing kavalier and clay | cocktail lounge      | otters      |
+| dark chocolate | A Wrinkle in time             | gates                | seals            |
+
 
 
 ## Code and Syntax Highlighting
@@ -178,11 +189,16 @@ For larger code blocks where you report multiple lines of code, you always start
 
 <!--- Fill you answer here. --->
 
+`print('hey wassup welcome to my crib')`
+
+
 2. Now write a block of Python code for that same print statement:
 
 <!--- Fill you answer here. --->
-
-
+```python
+mystring = 'hey wassup welcome to my crib'
+print(mystring)
+```
 
 ## LaTeX Equations
 You can also input LaTeX formatted equations in your Markdown file. To indicate where your equation is, you need to start and end your LaTeX equation with `$$`. To get the LaTeX preview to show it formatted, press `Cntrl + Shift + X`. For example, toggle the LaTeX preview for the line below:
@@ -192,6 +208,8 @@ $$ Re_D = \frac{uD}{\nu} $$
 1. Try it on your own! Write your favorite equation using LaTeX source code and toggle the LaTeX preview to see it formatted:
 
 <!--- Fill you answer here. --->
+
+$$ density = \frac{mass}{volume} $$
 
 
 # Using Python and Running it With Hydrogen in Markdown
@@ -228,39 +246,63 @@ These questions are meant to test what you've learned from the Python Basics tut
 1. Write a conditional statement with 3 conditions: when x is 10, when x is 1, and when x is anything other than 1 or 10. For each condition, have your code print what the value is or isn't.
 
 <!--- Fill you answer here. --->
-
-
+```python
+x = 4
+if x == 10:
+  print('x is 10')
+elif x == 1:
+  print('x is 1')
+else:
+  print('x is neither 10 nor 1')
+```
 
 
 2. Write a `for` loop that takes a variable with an initial value of 0, and adds the current index to the previous value of that variable (i.e. you variable should grow in size every iteration). Perform the iteration 20 times, and have the final value be printed at the end.
 
 <!--- Fill you answer here. --->
 
-
-
-
-
-
-
-
+```python
+x = 0
+for i in range(20):
+  x = x+1
+  print(x)
+```
 
 3. Using the NumPy package, calculate the value of sin(4), and use the sigfig function from the utility module in aide_design to get your answer to 3 sig-figs. *(Hint: You will need to import these packages. Remember how to do that?)*
 
 <!--- Fill you answer here. --->
 
+```python
+from aide_design.play import np
+from aide_design.play import ut
+
+x = np.sin(4)
+ut.sig(x,3)
+
+```
 
 
 4. Create a `list` of length 5, and verify the length of your list. Once you've done that, turn your `list` into an `array` and apply units of meters to it. After that, create a 5x5 `array`, extract the middle row and middle column. Verify the size of your 2D `array` and apply units of liters to it.
 
 <!--- Fill you answer here. --->
 
+```Python
+from aide_design.play import np
+numList = [2, 4 ,6 ,8 ,12]
 
+len(aList)
+numArray = np.array(numList)
+numArrayUnits = numArray * u.m
 
+my2DArray = np.array([[1 ,2, 3, 2, 1], [3, 4, 5, 6, 5], [7, 8, 9, 8, 7], [3, 4, 5, 6, 5], [1, 2, 3, 4, 3]])
 
+myMidCol = my2DArray[:,2]
+myMidRow = my2DArray[2,:]
 
+np.size(my2DArray)
 
-
-
+my2DArrayUnits = my2DArray * u.L
+```
 
 5.  One of the most famous equations for a particle diffusing through a liquid at low Reynolds Number is the Stokes-Einstein Equation where k<sub>B</sub> is the Boltzmann constant, T is the temperature in Kelvin, eta is the dynamic viscosity in kg/(m*s), and r is the particle radius. Write a function that takes a temperature in Kelvin, a particle radius in meters, and a viscosity of water to calculate the diffusion coefficient D.
 
@@ -276,13 +318,51 @@ from scipy.constants import Boltzmann as kB_sc # I've imported the unitless valu
 kB = kB_sc * u.joule / u.kelvin # I've given kB units for you in J/K; you can use the kB variable to give you Boltzmann's constant with units
 
 # Write your code here
+def DiffCo(T, eta, r):
+  """This function takes in values of kB, viscosity of water, and a particle radius to calculate the diffusion coefficient D."""
+  import math as m
+
+  T = T * u.kelvin #Applies units to temperature
+  r = r * u.meter #Applies units to radius
+  d = kB*T/(6*m.pi*eta*r).to_base_units() #calculates diffusion coefficient
+  return d
 
 ```
 
 6. You have a pipe with a radius of 0.2 m with water flowing in it at 2 m<sup>3</sup>/s. You want to see how the Reynolds Number changes as viscosity changes due to a change in temperature from 0 to 200<sup>o</sup>C. Create a plot of Reynolds Number against Temperature in Kelvin to show a relationship. Make sure your plot has a title, labeled axes, and axes grid. You can use functions from `physchem` like `pc.re_pipe` and `pc.viscosity_kinematic`. *(Hint: Make an array of temperatures to input into the `pc.viscosity_kinematic` function)*. Make sure to save your plot to your images folder in your personal repository, and display it below using `plt.show()` and an image insertion using a relative file path to the image.
 
 <!--- Fill you answer here. --->
+```python
+from aide_design.play import*
 
+r = 0.2 *u.m
+tempArray = [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200]
+tempArrayUnits = tempArray * u.kelvin
+
+
+for i in range(10):
+   n = pc.viscosity_kinematic(tempArray(i))
+   rNumArray(i) = n
+
+
+#5 * xArray / np.sqrt(re_flat_plate(1, xArray, pc.viscosity_kinematic(293 * u.kelvin)))
+
+plt.plot(tempArray, rNumArray, '-')
+plt.xlabel('Temperature (kelvin)')
+plt.ylabel('Reynolds Number (dimensionless)')
+plt.title('Reynolds Number as a function of temperature')
+plt.minorticks_on()
+plt.grid(which = 'major')
+plt.grid(which = 'minor')
+plt.show()
+```
+
+
+
+
+
+
+```
 # Teletype Basics
 In this section you and your team can practice using Teletype together.
 
