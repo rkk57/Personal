@@ -336,16 +336,11 @@ def DiffCo(T, eta, r):
 from aide_design.play import*
 
 r = 0.2 *u.m
-tempArray = [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200]
-tempArrayUnits = tempArray * u.kelvin
+tempArray = [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200] * u.degC
 
 
-for i in range(10):
-   n = pc.viscosity_kinematic(tempArray(i))
-   rNumArray(i) = n
+rNumArray = pc.viscosity_kinematic(tempArray)
 
-
-#5 * xArray / np.sqrt(re_flat_plate(1, xArray, pc.viscosity_kinematic(293 * u.kelvin)))
 
 plt.plot(tempArray, rNumArray, '-')
 plt.xlabel('Temperature (kelvin)')
@@ -354,11 +349,9 @@ plt.title('Reynolds Number as a function of temperature')
 plt.minorticks_on()
 plt.grid(which = 'major')
 plt.grid(which = 'minor')
+plt.savefig('/Users/Rosie/github/personal/images/viscosity')
 plt.show()
 ```
-
-
-
 
 
 
@@ -371,7 +364,8 @@ In this section you and your team can practice using Teletype together.
 <!--- Fill you answer here. --->
 
 
-
+go rosie! -jill
+wow great! -ben
 
 2. Have you other team members create a portal for you to join. In their Markdown file, write them something encouraging, and sign your name.
 
