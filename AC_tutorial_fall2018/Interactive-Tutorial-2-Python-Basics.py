@@ -111,8 +111,10 @@ x = 4
 
 # Your answer here
 
+
 def squared(num):
-    return num **2
+    return num ** 2
+
 
 for i in range(6):
     x = squared(x)
